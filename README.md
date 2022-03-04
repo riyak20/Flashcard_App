@@ -7,7 +7,7 @@ Provide simple flashcard functionality with answer choices.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/riyak20/Flashcard_App/blob/master/riya_flashcard_app_gif.gif?raw=true" width=200><br>
 
 ## Required
 - [x] Create New Project in Android Studio
