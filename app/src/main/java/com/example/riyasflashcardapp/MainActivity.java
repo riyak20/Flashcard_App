@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         TextView choice1 = findViewById(R.id.flashcard_choice1_textview);
         TextView choice2 = findViewById(R.id.flashcard_choice2_textview);
         TextView choice3 = findViewById(R.id.flashcard_choice3_textview);
-        ImageView eye = findViewById(R.id.toggle_choices_visibility);
-        boolean isShowingAnswers = true;
+        //ImageView eye = findViewById(R.id.toggle_choices_visibility);
+        //boolean isShowingAnswers = true;
 
         flashcardQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,27 +65,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // how to change isShowingAnswers val throughout main activity file?
-        eye.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // current logic: switch the val of isShowingAnswers to the opposite of before
-                //boolean isShowingAnswers = !isShowingAnswers;
-                if (!isShowingAnswers) {
-                    choice1.setVisibility(View.INVISIBLE);
-                    choice2.setVisibility(View.INVISIBLE);
-                    choice3.setVisibility(View.INVISIBLE);
-                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.eye_icon);
-                }
-
-                else {
-                    choice1.setVisibility(View.VISIBLE);
-                    choice2.setVisibility(View.VISIBLE);
-                    choice3.setVisibility(View.VISIBLE);
-                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.no_eye);
-                }
-            }
-        });
+//        eye.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                // current logic: switch the val of isShowingAnswers to the opposite of before
+////                //boolean isShowingAnswers = !isShowingAnswers;
+////                if (!isShowingAnswers) {
+////                    choice1.setVisibility(View.INVISIBLE);
+////                    choice2.setVisibility(View.INVISIBLE);
+////                    choice3.setVisibility(View.INVISIBLE);
+////                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.eye_icon);
+////                }
+////
+////                else {
+////                    choice1.setVisibility(View.VISIBLE);
+////                    choice2.setVisibility(View.VISIBLE);
+////                    choice3.setVisibility(View.VISIBLE);
+////                    ((ImageView) findViewById(R.id.toggle_choices_visibility)).setImageResource(R.drawable.no_eye);
+////                }
+////            }
+//        });
 
     }
 }
