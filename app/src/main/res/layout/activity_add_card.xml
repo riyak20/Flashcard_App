@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity">
+
+    <ImageView
+        android:id="@+id/flashcard_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/x_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <ImageView
+        android:id="@+id/flashcard_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/save"
+        android:layout_alignParentBottom="true"
+        />
+
+    <EditText
+        android:id="@+id/editTextFieldQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:hint="Enter the question here"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/editTextFieldAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/editTextFieldQuestion"
+        android:hint="Enter the answer here"
+        android:inputType="textMultiLine" />
+
+</RelativeLayout>

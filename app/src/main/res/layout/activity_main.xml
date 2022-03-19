@@ -70,13 +70,40 @@
         android:padding="10dp"
         android:textSize="30sp" />
 
+    <ImageView
+        android:id="@+id/flashcard_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plus_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/eye_visible"
+        android:src="@drawable/eye_icon"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/eye_invisible"
+        android:src="@drawable/no_eye"/>
+
 <!--    <ImageView-->
-<!--        android:layout_width="40dp"-->
-<!--        android:layout_height="75dp"-->
+<!--        android:id="@+id/edit_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/edit"-->
 <!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:id="@+id/toggle_choices_visibility"-->
-<!--        android:src="@drawable/eye_icon"/>-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        />-->
 
 </RelativeLayout>
