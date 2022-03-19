@@ -7,7 +7,7 @@ Enable users to create their own flashcard.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/riyak20/Flashcard_App/blob/master/riya_flashcard_app_gif2.gif?raw=true" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
