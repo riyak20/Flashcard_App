@@ -32,7 +32,7 @@
         android:id="@+id/flashcard_choice1_textview"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_below="@id/flashcard_question_textview"
+        android:layout_below="@id/next"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:background="@color/tan"
@@ -62,12 +62,15 @@
         android:layout_height="75dp"
         android:layout_below="@id/flashcard_choice2_textview"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/tan"
-        android:text="2.5 billion"
-        android:layout_margin="20dp"
-        android:textColor="@color/black"
+        android:gravity="center"
         android:padding="10dp"
+        android:text="2.5 billion"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
     <ImageView
@@ -96,6 +99,22 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/eye_invisible"
         android:src="@drawable/no_eye"/>
+
+    <ImageView
+        android:id="@+id/next"
+        android:layout_width="40dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/flashcard_question_textview"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/next" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="40dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/flashcard_question_textview"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/delete" />
 
 <!--    <ImageView-->
 <!--        android:id="@+id/edit_button"-->
