@@ -7,7 +7,7 @@ Allow users to save multiple flashcards when they exit and reopen the app.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/riyak20/Flashcard_App/blob/master/riya_flashcard_app_gif3.gif?raw=true" width=200><br>
 
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
