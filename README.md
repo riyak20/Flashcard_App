@@ -7,7 +7,7 @@ Add custom animations and styles to a flashcard app.
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/riyak20/Flashcard_App/blob/master/riya_flashcard_app_gif4.gif?raw=true" width=200><br>
 
 ## Required
 - [x] User sees a transition animation when going from the main screen to the add card screen.
