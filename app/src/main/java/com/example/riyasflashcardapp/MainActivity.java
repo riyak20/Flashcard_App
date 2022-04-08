@@ -1,13 +1,20 @@
 package com.example.riyasflashcardapp;
 
+import static android.view.View.VISIBLE;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.design.widget.Snackbar;
+import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FlashcardDatabase flashcardDatabase;
     List<Flashcard> allFlashcards;
     int currentCardDisplayedIndex = 0;
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +43,49 @@ public class MainActivity extends AppCompatActivity {
         TextView choice2 = findViewById(R.id.flashcard_choice2_textview);
         TextView choice3 = findViewById(R.id.flashcard_choice3_textview);
 
+//        //  ANIMATION ANSWER FLIP
+//        findViewById(R.id.flashcard_question_textview).setCameraDistance(500);
+//        findViewById(R.id.flashcard_answer_textview).setCameraDistance(500);
+//        flashcardQuestion.animate()
+//                .rotationY(90)
+//                .setDuration(200)
+//                .withEndAction(
+//                        new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                flashcardQuestion.setVisibility(View.INVISIBLE);
+//                                findViewById(R.id.flashcard_answer_textview).setVisibility(View.VISIBLE);
+//                                // second quarter turn
+//                                findViewById(R.id.flashcard_answer_textview).setRotationY(-90);
+//                                findViewById(R.id.flashcard_answer_textview).animate()
+//                                        .rotationY(0)
+//                                        .setDuration(200)
+//                                        .start();
+//                            }
+//                        }
+//                ).start();
+
         flashcardQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // STEP 4
+
+                // get the center for the clipping circle
+                int cx = flashcardAnswer.getWidth() / 2;
+                int cy = flashcardAnswer.getHeight() / 2;
+
+                // get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+                // create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(flashcardAnswer, cx, cy, 0f, finalRadius);
+
+                // hide the question and show the answer to prepare for playing the animation!
                 flashcardQuestion.setVisibility(View.INVISIBLE);
-                flashcardAnswer.setVisibility(View.VISIBLE);
+                flashcardAnswer.setVisibility(VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
 
@@ -47,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flashcardAnswer.setVisibility(View.INVISIBLE);
-                flashcardQuestion.setVisibility(View.VISIBLE);
+                flashcardQuestion.setVisibility(VISIBLE);
             }
         });
 
@@ -86,17 +132,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 eyeVisible.setVisibility(View.INVISIBLE);
-                eyeInvisible.setVisibility(View.VISIBLE);
-                choice1.setVisibility(View.VISIBLE);
-                choice2.setVisibility(View.VISIBLE);
-                choice3.setVisibility(View.VISIBLE);
+                eyeInvisible.setVisibility(VISIBLE);
+                choice1.setVisibility(VISIBLE);
+                choice2.setVisibility(VISIBLE);
+                choice3.setVisibility(VISIBLE);
             }
         });
 
         eyeInvisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eyeVisible.setVisibility(View.VISIBLE);
+                eyeVisible.setVisibility(VISIBLE);
                 eyeInvisible.setVisibility(View.INVISIBLE);
                 choice1.setVisibility(View.INVISIBLE);
                 choice2.setVisibility(View.INVISIBLE);
@@ -110,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent, 100);
+                // STEP 3
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
@@ -124,6 +172,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // view
+                flashcardAnswer.setVisibility(View.INVISIBLE);
+                flashcardQuestion.setVisibility(View.VISIBLE);
+
+                // COUNTDOWN TIMER
+                startTimer();
+
                 // don't try to go to next card if you have no cards to begin with
                 if (allFlashcards.size() == 0)
                     return;
@@ -147,8 +202,32 @@ public class MainActivity extends AppCompatActivity {
                 allFlashcards = flashcardDatabase.getAllCards();
                 Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
 
-                ((TextView) findViewById(R.id.flashcard_question_textview)).setText(flashcard.getAnswer());
-                ((TextView) findViewById(R.id.flashcard_answer_textview)).setText(flashcard.getQuestion());
+                ((TextView) findViewById(R.id.flashcard_question_textview)).setText(flashcard.getQuestion());
+                ((TextView) findViewById(R.id.flashcard_answer_textview)).setText(flashcard.getAnswer());
+
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+
+                findViewById(R.id.flashcard_question_textview).startAnimation(leftOutAnim);
+                findViewById(R.id.flashcard_question_textview).startAnimation(rightInAnim);
+
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+                });
+
             }
         });
 
@@ -165,12 +244,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        countDownTimer = new CountDownTimer(16000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ((TextView) findViewById(R.id.timer)).setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+            }
+        };
+
+
+        // CONFETTI
+//        new ParticleSystem(MainActivity.this, 100, R.drawable.confetti, 3000)
+//                .setSpeedRange(0.2f, 0.5f)
+//                .oneShot(findViewById(R.id.flashcard_answer_textview), 100);
     }
 
     // return random number
     public int getRandomNumber(int minNumber, int maxNumber) {
         Random rand = new Random();
         return rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+    }
+
+    // COUNTDOWN TIMER
+    private void startTimer() {
+        countDownTimer.cancel();
+        countDownTimer.start();
     }
 
     @Override
